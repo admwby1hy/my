@@ -41,12 +41,13 @@ class PythonService(win32serviceutil.ServiceFramework):
 
         while self.run:
             try:
-                now_localtime = time.strftime("%H:%M:%S", time.localtime())
-                
                 while my.istodayopen() == 0:
+                    now_localtime = time.strftime("%H:%M:%S", time.localtime())
                     self.logger.info('今日休市')
                     my.send_notice('今日休市')
                     time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
+
+                now_localtime = time.strftime("%H:%M:%S", time.localtime())
 
                 if "00:00:00" <= now_localtime < "09:29:00":
                     time.sleep(my.cal_difftime(now_localtime,'09:29:00'))
@@ -101,7 +102,7 @@ class PythonService(win32serviceutil.ServiceFramework):
                     my.send_notice('收盘竞价阶段：%s'%this_count)
                     time.sleep(my.cal_difftime(now_localtime,'15:01:00'))
                 
-                if "15:01:00" < now_localtime <= "16:05:00":
+                if "15:01:00" < now_localtime <= "15:05:00":
                     this_count = my.get_up_count()
                     
                     self.logger.info('最近三天收盘前：%s'%count_list)
@@ -121,9 +122,9 @@ class PythonService(win32serviceutil.ServiceFramework):
                            
                     self.logger.info('冰点服务今日已完成,最终上涨个数：%s'%this_count)
                     my.send_notice('冰点服务今日已完成,最终上涨个数：%s'%this_count)
-                    time.sleep(my.cal_difftime(now_localtime,'16:05:00'))
+                    time.sleep(my.cal_difftime(now_localtime,'15:05:00'))
 
-                if "16:05:00" < now_localtime <= "23:59:59":
+                if "15:05:00" < now_localtime <= "23:59:59":
                     self.logger.info('收盘了，我要休息了')
                     my.send_notice('收盘了，我要休息了')
                     time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
