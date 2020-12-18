@@ -200,6 +200,13 @@ def send_email(eamil_subject,email_content):
     except:
         return -1
 
+import subprocess
+def send_toaster(text): 
+    args = [r"powershell", r"..\a.ps1", text ]
+    p = subprocess . Popen ( args , stdout = subprocess . PIPE )
+    #dt = p . stdout . read ( ) #这里是标准输出，也就是PowerShell输出什么都会被传递这里输出
+
+
     
 """
     #获取上证综指历史数据，含市净率，市盈率

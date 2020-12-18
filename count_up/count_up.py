@@ -21,6 +21,7 @@ def main():
     logger = my.getLogger(project_dir)
 
     logger.info("开始啦")
+    print('开始啦')
     
     while 1 == 1:
         try:
@@ -29,7 +30,7 @@ def main():
             while my.istodayopen() == 0:
                 print('今日休市')
                 logger.info('今日休市')
-                #my.send_notice('今日休市')
+                my.send_toaster('今日休市')
                 time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
 
             if "00:00:00" <= now_localtime < "09:25:00":
@@ -39,13 +40,13 @@ def main():
                 this_count = my.get_up_count()
                 print('开盘竞价阶段：%s'%this_count)
                 logger.info('开盘竞价阶段：%s'%this_count)
-                #my.send_notice('开盘竞价阶段：%s'%this_count)
+                my.send_toaster('开盘竞价阶段：%s'%this_count)
                 time.sleep(60)
 
             if "11:30:00" < now_localtime < "13:00:00":
                 print('午间休息')
                 logger.info('午间休息')
-                #my.send_notice('午间休息')
+                my.send_toaster('午间休息')
                 time.sleep(my.cal_difftime(now_localtime,'13:00:00'))
 
             if "09:30:00" <= now_localtime <= "11:30:00" or "13:00:00" <= now_localtime <= "14:57:00":
@@ -57,27 +58,27 @@ def main():
                 if 600 >= this_count > 500:
                     print('冰点来了，次日好转概率80%')
                     logger.info('冰点来了，次日好转概率80%')
-                    #my.send_notice('冰点来了，次日好转概率80%')
+                    my.send_toaster('冰点来了，次日好转概率80%')
 
                 if 500 >= this_count > 400:
                     print('冰点来了，次日好转概率90%')
                     logger.info('冰点来了，次日好转概率90%')
-                    #my.send_notice('冰点来了，次日好转概率90%')
+                    my.send_toaster('冰点来了，次日好转概率90%')
 
                 if this_count <= 400:
                     print('深冰冰点来了，次日好转概率100%')
                     logger.info('深冰冰点来了，次日好转概率100%')
-                    #my.send_notice('深冰冰点来了，次日好转概率100%')
+                    my.send_toaster('深冰冰点来了，次日好转概率100%')
                         
                 if 650 < int(count_list[0]) < 750 and this_count <= 400:
                     print('日内情绪冰点,请立即补票')
                     logger.info('日内情绪冰点,请立即补票')
-                    #my.send_notice('日内情绪冰点,请立即补票')
+                    my.send_toaster('日内情绪冰点,请立即补票')
 
                 if 600 < this_count < 1000:
                     print('上涨个数小于1000，共'+str(this_count))
                     logger.info('上涨个数小于1000，共'+str(this_count))
-                    #my.send_notice('上涨个数小于1000，共'+str(this_count))
+                    my.send_toaster('上涨个数小于1000，共'+str(this_count))
 
                 time.sleep(10)
 
@@ -102,26 +103,26 @@ def main():
                 if int(count_list[2]) <= 1300 and int(count_list[1]) <= 1300 and int(count_list[0]) <= 1300:
                     print('连续3天跌破1300，明天好转概率接近100%')
                     logger.info('连续3天跌破1300，明天好转概率接近100%')
-                    #my.send_notice('连续3天跌破1300，明天好转概率接近100%')
+                    my.send_toaster('连续3天跌破1300，明天好转概率接近100%')
                         
                 if int(count_list[2]) > 1300 and int(count_list[1]) <= 1300 and int(count_list[0]) <= 1300:
                     print('连续2天跌破1300，明天有概率好转')
                     logger.info('连续2天跌破1300，明天有概率好转')
-                    #my.send_notice('连续2天跌破1300，明天有概率好转')
+                    my.send_toaster('连续2天跌破1300，明天有概率好转')
                 
                 print('冰点服务今日已完成!!!')
                 logger.info('冰点服务今日已完成!!!')
-                #my.send_notice('冰点服务今日已完成!!!')
+                my.send_toaster('冰点服务今日已完成!!!')
                 time.sleep(my.cal_difftime(now_localtime,'15:05:00'))
 
             if "15:05:00" < now_localtime <= "23:59:59":
                 print('收盘了，我要休息了')
                 logger.info('收盘了，我要休息了')
-                #my.send_notice('收盘了，我要休息了')
+                my.send_toaster('收盘了，我要休息了')
                 time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
 
         except Exception as e:
-            #my.send_notice('冰点服务异常!!!')
+            my.send_toaster('冰点服务异常!!!')
             logger.info(e)
             print(e)
             time.sleep(60)
