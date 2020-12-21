@@ -22,6 +22,7 @@ def main():
 
     logger.info("开始啦")
     print('开始啦')
+    my.send_toaster('开始啦')
     
     while 1 == 1:
         try:

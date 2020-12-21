@@ -209,8 +209,8 @@ def send_toaster(text):
                    text,
                    icon_path=None,
                    duration=15)
-    args = [r"powershell", r"..\a.ps1", text ]
-    p = subprocess . Popen ( args , stdout = subprocess . PIPE )
+    #args = [r"powershell", r"..\a.ps1", text ]
+    #p = subprocess . Popen ( args , stdout = subprocess . PIPE )
     #dt = p . stdout . read ( ) #这里是标准输出，也就是PowerShell输出什么都会被传递这里输出
 
 
