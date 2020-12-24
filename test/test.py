@@ -30,6 +30,59 @@ print(now_localtime)
 print(my.cal_difftime('00:00:03','23:59:59'))
 print(my.cal_difftime('00:00:03','15:30:01'))
 
+import re,urllib2,urllib
+ 
+user = {'session[username_or_email]':'hejiang72@gmail.com','session[password]':'hjhmhbwwfx'}
+data = {
+    'status':"""
+Send by Python!
+""",
+    'tab':'home',
+    'source':'web',
+    }
+ 
+def u(s, encoding):
+    if isinstance(s, unicode):
+        return s
+    else:
+        try:
+            return unicode(s, encoding)
+        except:
+            return s
+ 
+def send(user=user,data=data):
+    c = urllib2.HTTPCookieProcessor()
+    builder = urllib2.build_opener(c)
+    url = 'https://twitter.com/sessions'
+    request = urllib2.Request(
+        url=url,
+        data = urllib.urlencode(user)
+        )
+    d = builder.open(request)
+    r = re.compile('<input name="authenticity_token" type="hidden" value="(.*?)" />')
+    x = d.read()
+    if len(re.compile(r"name=\"session\[username_or_email\]\"").findall(x))>0:
+        print( "Login Error!" )
+        return False
+    auth = {'authenticity_token':r.findall(x)[0]}
+    send = '%s&%s'%(
+        urllib.urlencode(auth),
+        urllib.urlencode(data)
+        )
+    request = urllib2.Request(
+        url='http://twitter.com/status/update',
+        data = send ,
+        )
+    builder.open(request)
+    return True
+ 
+if __name__=="__main__":
+    import sys
+    if len(sys.argv)>1 and sys.argv[1]!="":
+        data["status"] = u(" ".join(sys.argv[1:]),"gb2312").encode("utf-8")
+    if send():
+        print ('ok')
+
 
 
 
