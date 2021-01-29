@@ -208,7 +208,7 @@ def send_toaster(text):
     toaster.show_toast("Ice Point",
                    text,
                    icon_path=None,
-                   duration=15)
+                   duration=15,threaded=True)
     #args = [r"powershell", r"..\a.ps1", text ]
     #p = subprocess . Popen ( args , stdout = subprocess . PIPE )
     #dt = p . stdout . read ( ) #这里是标准输出，也就是PowerShell输出什么都会被传递这里输出
