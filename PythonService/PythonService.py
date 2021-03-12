@@ -45,7 +45,7 @@ class PythonService(win32serviceutil.ServiceFramework):
                     now_localtime = time.strftime("%H:%M:%S", time.localtime())
                     self.logger.info('今日休市')
                     my.send_notice('今日休市')
-                    time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
+                    time.sleep(my.cal_difftime(now_localtime,'23:59:59')+3600)
 
                 now_localtime = time.strftime("%H:%M:%S", time.localtime())
 

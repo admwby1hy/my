@@ -22,7 +22,7 @@ def main():
 
     logger.info("开始啦")
     print('开始啦')
-    my.send_toaster('开始啦')
+    #my.send_toaster('开始啦')
     
     while 1 == 1:
         try:
@@ -32,7 +32,7 @@ def main():
                 print('今日休市')
                 logger.info('今日休市')
                 my.send_toaster('今日休市')
-                time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
+                time.sleep(my.cal_difftime(now_localtime,'23:59:59')+3600)
 
             if "00:00:00" <= now_localtime < "09:25:00":
                 time.sleep(my.cal_difftime(now_localtime,'09:25:00'))
@@ -117,6 +117,7 @@ def main():
                 time.sleep(my.cal_difftime(now_localtime,'15:05:00'))
 
             if "15:05:00" < now_localtime <= "23:59:59":
+                time.sleep(10)
                 print('收盘了，我要休息了')
                 logger.info('收盘了，我要休息了')
                 my.send_toaster('收盘了，我要休息了')
