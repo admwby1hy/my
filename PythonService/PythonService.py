@@ -41,29 +41,34 @@ class PythonService(win32serviceutil.ServiceFramework):
 
         while self.run:
             try:
-                while my.istodayopen() == 0:
-                    now_localtime = time.strftime("%H:%M:%S", time.localtime())
-                    self.logger.info('今日休市')
-                    my.send_notice('今日休市')
-                    time.sleep(my.cal_difftime(now_localtime,'23:59:59')+3600)
-
                 now_localtime = time.strftime("%H:%M:%S", time.localtime())
 
-                if "00:00:00" <= now_localtime < "09:29:00":
-                    time.sleep(my.cal_difftime(now_localtime,'09:29:00'))
+                if "00:00:00" <= now_localtime < "09:24:00":
+                    time.sleep(my.cal_difftime(now_localtime,'09:24:00'))
 
-                if "09:29:00" <= now_localtime < "09:30:30":
+
+                if "09:24:00" <= now_localtime < "09:29:00":
+                    if my.istodayopen() == 0:
+                        print('今日休市')
+                        self.logger.info('今日休市')
+                        my.send_notice('今日休市')
+                        time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
+                    else:
+                        time.sleep(my.cal_difftime(now_localtime,'09:29:00'))
+
+                
+                if "09:29:00" <= now_localtime < "09:30:00":
                     this_count = my.get_up_count()
                     self.logger.info('开盘竞价阶段：%s'%this_count)
                     my.send_notice('开盘竞价阶段：%s'%this_count)
-                    time.sleep(my.cal_difftime(now_localtime,'09:30:30'))
+                    time.sleep(my.cal_difftime(now_localtime,'09:30:00'))
 
                 if "11:30:00" < now_localtime < "13:00:00":
                     self.logger.info('午间休息')
                     my.send_notice('午间休息')
                     time.sleep(my.cal_difftime(now_localtime,'13:00:00'))
 
-                if "09:30:30" <= now_localtime <= "11:30:00" or "13:00:00" <= now_localtime <= "15:00:00":
+                if "09:30:00" <= now_localtime <= "11:30:00" or "13:00:00" <= now_localtime <= "15:00:00":
                     this_count = my.get_up_count()
                     
                     self.logger.info('当前两市上涨个数:'+str(this_count))

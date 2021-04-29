@@ -28,14 +28,17 @@ def main():
         try:
             now_localtime = time.strftime("%H:%M:%S", time.localtime())
 
-            while my.istodayopen() == 0:
-                print('今日休市')
-                logger.info('今日休市')
-                my.send_toaster('今日休市')
-                time.sleep(my.cal_difftime(now_localtime,'23:59:59')+3600)
+            if "00:00:00" <= now_localtime < "09:24:00":
+                time.sleep(my.cal_difftime(now_localtime,'09:24:00'))
 
-            if "00:00:00" <= now_localtime < "09:25:00":
-                time.sleep(my.cal_difftime(now_localtime,'09:25:00'))
+            if "09:24:00" <= now_localtime < "09:25:00":
+                if my.istodayopen() == 0:
+                    print('今日休市')
+                    logger.info('今日休市')
+                    my.send_toaster('今日休市')
+                    time.sleep(my.cal_difftime(now_localtime,'23:59:59'))
+                else:
+                    time.sleep(my.cal_difftime(now_localtime,'09:25:00'))
 
             if "09:25:00" <= now_localtime < "09:30:00":
                 this_count = my.get_up_count()
