@@ -8,7 +8,7 @@ stockcode  = input("请输入证券代码:")
 if len(stockcode) == 0:
     stockcode = '510300'
 
-startdate = input("请输入起始日期:")
+startdate = istartdatenput("请输入起始日期:")
 if len(startdate) == 0:
     stockcode = '19900101'
 

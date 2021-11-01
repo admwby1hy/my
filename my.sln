@@ -33,6 +33,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "count_up", "count_up\count_
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonService", "PythonService\PythonService.pyproj", "{0CD2AF14-AC79-481D-A84C-08A8429DF80F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "icepoint", "icepoint\icepoint.pyproj", "{E2C0D048-112C-4A80-8EA2-11DB47EECB58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,8 @@ Global
 		{02DDF08B-3A3D-4ED1-BF5B-53BB484F872E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD2AF14-AC79-481D-A84C-08A8429DF80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CD2AF14-AC79-481D-A84C-08A8429DF80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C0D048-112C-4A80-8EA2-11DB47EECB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C0D048-112C-4A80-8EA2-11DB47EECB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
